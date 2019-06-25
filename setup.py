@@ -26,8 +26,6 @@ setup(name='Keras_Hub_Applications',
       long_description=long_description,
       author='Keras Team',
       url='https://github.com/keras-team/keras-applications',
-      download_url='https://github.com/keras-team/'
-                   'keras-applications/tarball/1.0.8',
       license='MIT',
       install_requires=['numpy>=1.9.1',
                         'h5py',
