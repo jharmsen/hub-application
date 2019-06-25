@@ -17,6 +17,7 @@ from __future__ import division
 from __future__ import print_function
 
 import os
+import tensorflow_hub as hub
 
 from . import get_submodules_from_kwargs
 from . import imagenet_utils
@@ -254,43 +255,22 @@ def DenseNet(blocks,
     if weights == 'imagenet':
         if include_top:
             if blocks == [6, 12, 24, 16]:
-                weights_path = keras_utils.get_file(
-                    'densenet121_weights_tf_dim_ordering_tf_kernels.h5',
-                    DENSENET121_WEIGHT_PATH,
-                    cache_subdir='models',
-                    file_hash='9d60b8095a5708f2dcce2bca79d332c7')
+                weights_path = 'densenet121_weights_tf_dim_ordering_tf_kernels'
             elif blocks == [6, 12, 32, 32]:
-                weights_path = keras_utils.get_file(
-                    'densenet169_weights_tf_dim_ordering_tf_kernels.h5',
-                    DENSENET169_WEIGHT_PATH,
-                    cache_subdir='models',
-                    file_hash='d699b8f76981ab1b30698df4c175e90b')
+                weights_path = 'densenet169_weights_tf_dim_ordering_tf_kernels'
             elif blocks == [6, 12, 48, 32]:
-                weights_path = keras_utils.get_file(
-                    'densenet201_weights_tf_dim_ordering_tf_kernels.h5',
-                    DENSENET201_WEIGHT_PATH,
-                    cache_subdir='models',
-                    file_hash='1ceb130c1ea1b78c3bf6114dbdfd8807')
+                weights_path = 'densenet201_weights_tf_dim_ordering_tf_kernels'
         else:
             if blocks == [6, 12, 24, 16]:
-                weights_path = keras_utils.get_file(
-                    'densenet121_weights_tf_dim_ordering_tf_kernels_notop.h5',
-                    DENSENET121_WEIGHT_PATH_NO_TOP,
-                    cache_subdir='models',
-                    file_hash='30ee3e1110167f948a6b9946edeeb738')
+                weights_path = 'densenet121_weights_tf_dim_ordering_tf_kernels_notop'
             elif blocks == [6, 12, 32, 32]:
-                weights_path = keras_utils.get_file(
-                    'densenet169_weights_tf_dim_ordering_tf_kernels_notop.h5',
-                    DENSENET169_WEIGHT_PATH_NO_TOP,
-                    cache_subdir='models',
-                    file_hash='b8c4d4c20dd625c148057b9ff1c1176b')
+                weights_path = 'densenet169_weights_tf_dim_ordering_tf_kernels_notop'
             elif blocks == [6, 12, 48, 32]:
-                weights_path = keras_utils.get_file(
-                    'densenet201_weights_tf_dim_ordering_tf_kernels_notop.h5',
-                    DENSENET201_WEIGHT_PATH_NO_TOP,
-                    cache_subdir='models',
-                    file_hash='c13680b51ded0fb44dff2d8f86ac8bb1')
-        model.load_weights(weights_path)
+                weights_path = 'densenet201_weights_tf_dim_ordering_tf_kernels_notop'
+        path = hub.resolve(('https://github.com/jharmsen/keras-applications/'
+          'releases/download/1/{}.tar.gz').format(weights_path))
+        path = os.path.join(path, 'variables/variables')
+        model.load_weights(path)
     elif weights is not None:
         model.load_weights(weights)
 
