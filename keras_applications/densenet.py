@@ -17,35 +17,12 @@ from __future__ import division
 from __future__ import print_function
 
 import os
-import tensorflow_hub as hub
+from tensorflow_hub.module_v2 import resolve
 
 from . import get_submodules_from_kwargs
 from . import imagenet_utils
 from .imagenet_utils import decode_predictions
 from .imagenet_utils import _obtain_input_shape
-
-
-BASE_WEIGTHS_PATH = (
-    'https://github.com/keras-team/keras-applications/'
-    'releases/download/densenet/')
-DENSENET121_WEIGHT_PATH = (
-    BASE_WEIGTHS_PATH +
-    'densenet121_weights_tf_dim_ordering_tf_kernels.h5')
-DENSENET121_WEIGHT_PATH_NO_TOP = (
-    BASE_WEIGTHS_PATH +
-    'densenet121_weights_tf_dim_ordering_tf_kernels_notop.h5')
-DENSENET169_WEIGHT_PATH = (
-    BASE_WEIGTHS_PATH +
-    'densenet169_weights_tf_dim_ordering_tf_kernels.h5')
-DENSENET169_WEIGHT_PATH_NO_TOP = (
-    BASE_WEIGTHS_PATH +
-    'densenet169_weights_tf_dim_ordering_tf_kernels_notop.h5')
-DENSENET201_WEIGHT_PATH = (
-    BASE_WEIGTHS_PATH +
-    'densenet201_weights_tf_dim_ordering_tf_kernels.h5')
-DENSENET201_WEIGHT_PATH_NO_TOP = (
-    BASE_WEIGTHS_PATH +
-    'densenet201_weights_tf_dim_ordering_tf_kernels_notop.h5')
 
 backend = None
 layers = None
@@ -267,7 +244,7 @@ def DenseNet(blocks,
                 weights_path = 'densenet169_weights_tf_dim_ordering_tf_kernels_notop'
             elif blocks == [6, 12, 48, 32]:
                 weights_path = 'densenet201_weights_tf_dim_ordering_tf_kernels_notop'
-        path = hub.resolve(('https://github.com/jharmsen/keras-applications/'
+        path = resolve(('https://github.com/jharmsen/keras-applications/'
           'releases/download/1/{}.tar.gz').format(weights_path))
         path = os.path.join(path, 'variables/variables')
         model.load_weights(path)
