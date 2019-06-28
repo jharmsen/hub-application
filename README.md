@@ -1,13 +1,23 @@
-# Keras Applications
+# Keras/Hub Applications
 
-[![Build Status](https://travis-ci.org/keras-team/keras-applications.svg?branch=master)](https://travis-ci.org/keras-team/keras-applications)
 
-Keras Applications is the `applications` module of
-the Keras deep learning library.
-It provides model definitions and pre-trained weights for a number
-of popular archictures, such as VGG16, ResNet50, Xception, MobileNet, and more.
+This is an extension to back a Keras Application with [TensorFlow Hub](tensorflow.org) and `SavedModel`.
 
-Read the documentation at: https://keras.io/applications/
+This offers two ways to use the application:
+  * *code+weights:* original Keras Applications method, use this if you're using Keras by cloning the repo and importing the python.
+  * *graph+weights:* no need to clone _any_ code, no need to use Keras.  Just use `hub.load` and call the module.
+
+## Example use
+_Note: no need to clone any code:_
+```python
+import tensorflow_hub as hub
+
+module = hub.load('https://github.com/jharmsen/keras-applications/releases/download/1/densenet121_weights_tf_dim_ordering_tf_kernels_notop.tar.gz')
+
+output = module(tf.random.normal(1, 32, 32, 3))
+```
+
+Read the original documentation at: https://keras.io/applications/
 
 Keras Applications may be imported directly
 from an up-to-date installation of Keras:
