@@ -20,12 +20,12 @@ Keras Applications is compatible with Python 2.7-3.6
 and is distributed under the MIT license.
 '''
 
-setup(name='Hub_Applications',
+setup(name='Hub_Application',
       version='1.0.9',
       description='Reference implementations of popular deep learning models',
       long_description=long_description,
       author='Keras Team',
-      url='https://github.com/keras-team/keras-applications',
+      url='https://github.com/jharmsen/hub-application',
       license='MIT',
       install_requires=['numpy>=1.9.1',
                         'h5py',
