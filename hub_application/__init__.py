@@ -50,16 +50,4 @@ def correct_pad(backend, inputs, kernel_size):
 __version__ = '1.0.8'
 
 
-from . import vgg16
-from . import vgg19
-from . import resnet50
-from . import inception_v3
-from . import inception_resnet_v2
-from . import xception
-from . import mobilenet
-from . import mobilenet_v2
 from . import densenet
-from . import nasnet
-from . import resnet
-from . import resnet_v2
-from . import resnext
