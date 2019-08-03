@@ -218,32 +218,21 @@ def DenseNet(blocks,
     # Create model.
     if blocks == [6, 12, 24, 16]:
         model = models.Model(inputs, x, name='densenet121')
-    elif blocks == [6, 12, 32, 32]:
-        model = models.Model(inputs, x, name='densenet169')
-    elif blocks == [6, 12, 48, 32]:
-        model = models.Model(inputs, x, name='densenet201')
     else:
         model = models.Model(inputs, x, name='densenet')
 
     # Load weights.
     if weights == 'imagenet':
-        if include_top:
-            if blocks == [6, 12, 24, 16]:
-                weights_path = 'densenet121_weights_tf_dim_ordering_tf_kernels'
-            elif blocks == [6, 12, 32, 32]:
-                weights_path = 'densenet169_weights_tf_dim_ordering_tf_kernels'
-            elif blocks == [6, 12, 48, 32]:
-                weights_path = 'densenet201_weights_tf_dim_ordering_tf_kernels'
-        else:
-            if blocks == [6, 12, 24, 16]:
-                weights_path = 'densenet121_weights_tf_dim_ordering_tf_kernels_notop'
-            elif blocks == [6, 12, 32, 32]:
-                weights_path = 'densenet169_weights_tf_dim_ordering_tf_kernels_notop'
-            elif blocks == [6, 12, 48, 32]:
-                weights_path = 'densenet201_weights_tf_dim_ordering_tf_kernels_notop'
+        if include_top or (blocks != [6, 12, 24, 16]):
+            raise ValueError('Only DenseNet121 without top is available'
+                             ' pretrained')
+        # NOTE: If your Hub Application has multiple configurations (e.g.,
+        # DenseNet {121, 169, 201} x {include_top=True, include_top=False})
+        # each of these would have their own weights_path/SavedModel.
+        weights_path = 'densenet121_weights_tf_dim_ordering_tf_kernels_notop'
         # Download the SavedModel and use only the checkpoint (variables).
-        path = resolve(('https://github.com/jharmsen/keras-applications/'
-          'releases/download/1/{}.tar.gz').format(weights_path))
+        path = resolve(('https://github.com/jharmsen/hub-application/'
+          'releases/download/v1/{}.tar.gz').format(weights_path))
         path = os.path.join(path, 'variables/variables')
         model.load_weights(path)
     elif weights is not None:
@@ -252,7 +241,7 @@ def DenseNet(blocks,
     return model
 
 
-def DenseNet121(include_top=True,
+def DenseNet121(include_top=False,
                 weights='imagenet',
                 input_tensor=None,
                 input_shape=None,
@@ -260,34 +249,6 @@ def DenseNet121(include_top=True,
                 classes=1000,
                 **kwargs):
     return DenseNet([6, 12, 24, 16],
-                    include_top, weights,
-                    input_tensor, input_shape,
-                    pooling, classes,
-                    **kwargs)
-
-
-def DenseNet169(include_top=True,
-                weights='imagenet',
-                input_tensor=None,
-                input_shape=None,
-                pooling=None,
-                classes=1000,
-                **kwargs):
-    return DenseNet([6, 12, 32, 32],
-                    include_top, weights,
-                    input_tensor, input_shape,
-                    pooling, classes,
-                    **kwargs)
-
-
-def DenseNet201(include_top=True,
-                weights='imagenet',
-                input_tensor=None,
-                input_shape=None,
-                pooling=None,
-                classes=1000,
-                **kwargs):
-    return DenseNet([6, 12, 48, 32],
                     include_top, weights,
                     input_tensor, input_shape,
                     pooling, classes,
@@ -309,5 +270,3 @@ def preprocess_input(x, data_format=None, **kwargs):
 
 
 setattr(DenseNet121, '__doc__', DenseNet.__doc__)
-setattr(DenseNet169, '__doc__', DenseNet.__doc__)
-setattr(DenseNet201, '__doc__', DenseNet.__doc__)
