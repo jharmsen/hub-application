@@ -13,7 +13,7 @@ _Note: no need to clone any code:_
 ```python
 import tensorflow_hub as hub
 
-module = hub.load('https://github.com/jharmsen/keras-applications/releases/download/1/densenet121_weights_tf_dim_ordering_tf_kernels_notop.tar.gz')
+module = hub.load('https://github.com/jharmsen/hub-application/releases/download/v1/densenet121_weights_tf_dim_ordering_tf_kernels_notop.tar.gz')
 
 output = module(tf.random.normal(1, 32, 32, 3))
 ```
