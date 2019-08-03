@@ -17,17 +17,17 @@ from __future__ import division
 from __future__ import print_function
 
 import os
+from tensorflow.python.keras import backend
+from tensorflow.python.keras import engine
+from tensorflow.python.keras import layers
+from tensorflow.python.keras import models
+from tensorflow.python.keras import utils
 from tensorflow_hub.module_v2 import resolve
 
-from . import get_submodules_from_kwargs
 from . import imagenet_utils
 from .imagenet_utils import decode_predictions
 from .imagenet_utils import _obtain_input_shape
 
-backend = None
-layers = None
-models = None
-keras_utils = None
 
 
 def dense_block(x, blocks, name):
@@ -151,9 +151,6 @@ def DenseNet(blocks,
         ValueError: in case of invalid argument for `weights`,
             or invalid input shape.
     """
-    global backend, layers, models, keras_utils
-    backend, layers, models, keras_utils = get_submodules_from_kwargs(kwargs)
-
     if not (weights in {'imagenet', None} or os.path.exists(weights)):
         raise ValueError('The `weights` argument should be either '
                          '`None` (random initialization), `imagenet` '
@@ -244,6 +241,7 @@ def DenseNet(blocks,
                 weights_path = 'densenet169_weights_tf_dim_ordering_tf_kernels_notop'
             elif blocks == [6, 12, 48, 32]:
                 weights_path = 'densenet201_weights_tf_dim_ordering_tf_kernels_notop'
+        # Download the SavedModel and use only the checkpoint (variables).
         path = resolve(('https://github.com/jharmsen/keras-applications/'
           'releases/download/1/{}.tar.gz').format(weights_path))
         path = os.path.join(path, 'variables/variables')
