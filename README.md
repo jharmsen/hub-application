@@ -60,9 +60,13 @@ Cons
   * Only applicable if user is using python & Keras
 
 ## Building a Hub Application
-This colab walks through saving a `keras.Model` using `tf.saved_model.save` to produce the SavedModel (.tar.gz):
+1. Export your `keras.Model` with `tf.saved_model.save` to produce the SavedModel .tar.gz ([example notebook](./Export_DenseNet121_No_Top.ipynb))
+1. Upload SavedModel as a [release binary file](https://help.github.com/en/articles/creating-releases)
+1. Add functionality in your `keras.Model` constructor to
+    1. Download SavedModel with `hub.resolve`
+    1. Load weights using `keras.Model.load_weights`
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jharmsen/hub-application/blob/master/Export_DenseNet121_No_Top.ipynb)
+See an [example constructor here](https://github.com/jharmsen/hub-application/blob/04d9d338bcb01bf5ed79c1a3fbbe433935e2f223/hub_application/densenet.py#L229-L237).
 
 
 ## Testing
