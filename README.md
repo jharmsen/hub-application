@@ -12,8 +12,9 @@ There are two high-level ways to use a Hub Application:
   * *graph+weights:* no need to clone _any_ code, no need to use Keras.  Just use `hub.load` and call the module.
   * *code+weights:* original Keras Applications method, use this if you're using Keras by cloning the repo and importing the python.
   
-See these in Colab
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jharmsen/hub-application/blob/master/Export_DenseNet121_No_Top.ipynb]
+See these in Colab,
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jharmsen/hub-application/blob/master/Export_DenseNet121_No_Top.ipynb)
 
 ### Usage: graph+weights
 In this case we use TF-Hub and SavedModel directly - _no need to clone any code_ or even be using Keras:
@@ -59,8 +60,10 @@ Cons
   * Only applicable if user is using python & Keras
 
 ## Building a Hub Application
-This colab walk through saving a `keras.Model` using `tf.saved_model.save` to produce the SavedModel (.tar.gz):
-[https://colab.research.google.com/assets/colab-badge.svg](https://colab.research.google.com/github/weiji14/deepbedmap/]
+This colab walks through saving a `keras.Model` using `tf.saved_model.save` to produce the SavedModel (.tar.gz):
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jharmsen/hub-application/blob/master/Export_DenseNet121_No_Top.ipynb)
+
 
 ## Testing
 ```
