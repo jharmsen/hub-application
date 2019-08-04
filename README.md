@@ -3,7 +3,7 @@
 
 This shows how to use [TensorFlow Hub](tensorflow.org/hub) and Keras to build maximally reusable ML.
 
-This repo builds and shares a version of DenseNet which is based on code in `keras-applications`.
+This repo builds and shares a pretrained DenseNet121 for feature extraction (forked from [DenseNet](https://github.com/keras-team/keras-applications/blob/master/keras_applications/densenet.py) code in `keras-applications`).
 
 <img src="./diagrams/overview.svg" width="400">
 
@@ -12,7 +12,7 @@ There are two high-level ways to use a Hub Application:
   * *graph+weights:* no need to clone _any_ code, no need to use Keras.  Just use `hub.load` and call the module.
   * *code+weights:* original Keras Applications method, use this if you're using Keras by cloning the repo and importing the python.
   
-See these in Colab,
+### Try it!
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jharmsen/hub-application/blob/master/Export_DenseNet121_No_Top.ipynb)
 
