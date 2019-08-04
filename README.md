@@ -7,11 +7,11 @@ We share a version of DenseNet which is based on code in `keras-applications`.
 <img src="./diagrams/overview.svg" width="400">
 
 This offers two ways to use the application:
-  * *code+weights:* original Keras Applications method, use this if you're using Keras by cloning the repo and importing the python.
   * *graph+weights:* no need to clone _any_ code, no need to use Keras.  Just use `hub.load` and call the module.
+  * *code+weights:* original Keras Applications method, use this if you're using Keras by cloning the repo and importing the python.
 
-## Example use
-_Note: no need to clone any code:_
+## Example use A
+In this case we use TF-Hub and SavedModel directly - _no need to clone any code_ or even be using Keras:
 ```python
 import tensorflow_hub as hub
 
@@ -20,7 +20,38 @@ module = hub.load('https://github.com/jharmsen/hub-application/releases/download
 output = module(tf.random.normal(1, 32, 32, 3))
 ```
 
-Read the original documentation at: https://keras.io/applications/
+<img src="./diagrams/hub_flow.svg" width="600">
+
+Pros
+  * No model code needed
+  * Can be used across TF ecosystem (e.g., Sonnet, other languages, etc...)
+  * Can be easily used in Keras with `hub.KerasLayer`
+  
+Cons
+  * Less flexibility without full model code
+
+
+## Example use B
+In this case the Keras model code is cloned and produces a `keras.Model` whose weights are loaded from the SavedModel.
+
+```shell
+$ pip install git+https://github.com/jharmsen/hub-application.git
+```
+
+```python
+from hub_application import densenet
+...
+model = densenet.DenseNet121()
+```
+
+<img src="./diagrams/keras_flow.svg" width="600">
+
+Pros
+  * Full flexibility in modifying code
+  * Produces a complete `keras.Model`
+
+Cons
+  * Only applicable if user is using python & Keras
 
 ## Testing
 ```
