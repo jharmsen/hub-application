@@ -14,7 +14,7 @@ There are two high-level ways to use a Hub Application:
   
 ### Try it!
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jharmsen/hub-application/blob/master/Export_DenseNet121_No_Top.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jharmsen/hub-application/blob/master/Hub_Application_Usage.ipynb)
 
 ### Usage: graph+weights
 In this case we use TF-Hub and SavedModel directly - _no need to clone any code_ or even be using Keras:
