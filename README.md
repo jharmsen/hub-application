@@ -1,4 +1,5 @@
 # Keras/Hub Applications
+## Overview
 
 This shows how to use [TensorFlow Hub](tensorflow.org/hub) and Keras to build maximally reusable ML.
 
@@ -6,11 +7,12 @@ We share a version of DenseNet which is based on code in `keras-applications`.
 
 <img src="./diagrams/overview.svg" width="400">
 
+## Use cases
 This offers two ways to use the application:
   * *graph+weights:* no need to clone _any_ code, no need to use Keras.  Just use `hub.load` and call the module.
   * *code+weights:* original Keras Applications method, use this if you're using Keras by cloning the repo and importing the python.
 
-## Example use A
+### Usage: graph+weights
 In this case we use TF-Hub and SavedModel directly - _no need to clone any code_ or even be using Keras:
 ```python
 import tensorflow_hub as hub
@@ -31,7 +33,7 @@ Cons
   * Less flexibility without full model code
 
 
-## Example use B
+### Usage: code+weights
 In this case the Keras model code is cloned and produces a `keras.Model` whose weights are loaded from the SavedModel.
 
 ```shell
