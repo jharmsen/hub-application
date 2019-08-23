@@ -13,8 +13,13 @@ There are two high-level ways to use a Hub Application:
   * *code+weights:* original Keras Applications method, use this if you're using Keras by cloning the repo and importing the python.
   
 ### Try it!
+Play around with the code:
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jharmsen/hub-application/blob/master/Hub_Application_Usage.ipynb)
+
+Run with TensorFlow Serving:
+
+[![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.svg)](https://console.cloud.google.com/cloudshell/editor?shellonly=true&cloudshell_image=gcr.io/cloudrun/button&cloudshell_git_repo=https://github.com/jharmsen/hub-application.git)
 
 ### Usage: graph+weights
 In this case we use TF-Hub and SavedModel directly - _no need to clone any code_ or even be using Keras:
